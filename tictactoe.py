@@ -14,7 +14,8 @@
 # The Player class has the following properties: 
 #* **name** = *player name*
 #* **token** = *'X' or 'O'*
-# class Player:
+
+# class Player: Peter with take this part.
 
 
 # The Game class has the following properties:
