@@ -22,6 +22,17 @@ import pprint
 
 
 
+# Peter Entries Starts:
+class Player:
+    def __init__(self, type): # self = Players, type = X or O
+        self.type = type
+
+    def __str__(self):
+        return "Player {}".format(self.type)
+
+
+# Peter Entries Ends:
+
 # The Game class has the following properties:
 # * **board** = *your representation of the board* <Cleon>
 # You can represent the board however you like, such as a 2D list, tuples, or dictionary.
@@ -32,11 +43,15 @@ import pprint
 # * 'is_full()' returns True if the game board is full and no victory condition met
 # * 'is_game_over()' returns True if game board is full or a player has won
 # class Game:
+
+
+
+
     def __init__(self, board):
         self.board = board
     def __repr__():
         # pretty print board
-        pprint(self.board)
+        print(self.board)
     def move(x, y, player):
         # player's token overwrites data for space in board
 
