@@ -16,10 +16,22 @@ import pprint
 # The Player class has the following properties: 
 #* **name** = *player name*
 #* **token** = *'X' or 'O'*
-class Player: #<Peter>
-    def __Iinit_(self, name, token):
-        self.name = name
-        self-token = token
+
+
+# class Player: Peter with take this part.
+
+
+
+# Peter Entries Starts:
+class Player:
+    def __init__(self, type): # self = Players, type = X or O
+        self.type = type
+
+    def __str__(self):
+        return "Player {}".format(self.type)
+
+
+# Peter Entries Ends:
 
 # The Game class has the following properties:
 # * **board** = *your representation of the board* <Cleon>
@@ -30,7 +42,11 @@ class Player: #<Peter>
 # * 'calc_winner()' determines if a victory condition is met by a Player
 # * 'is_full()' returns True if the game board is full and no victory condition met
 # * 'is_game_over()' returns True if game board is full or a player has won
+
 class Game:
+
+# class Game:
+
     def __init__(self, board):
         self.board = {'top-L': ' ',
                         'top-M': ' ',
@@ -43,12 +59,15 @@ class Game:
                         'low-R': ' '}
     def __repr__():
         # pretty print board
+
         print(str(self.board['top-L']) + '|' + str(self.board['top-M']) + '|' + str(self.board['top-R']))
         print('-+-+-')
         print(str(self.board['mid-L']) + '|' + str(self.board['mid-M']) + '|' + str(self.board['mid-R']))
         print('-+-+-')
         print(str(self.board['low-L']) + '|' + str(self.board['low-M']) + '|' + str(self.board['low-R']))
     def move(turn, player):
+        print(self.board)
+    def move(x, y, player):
         # player's token overwrites data for space in board
         # board(x, y) = player #either 'X' or 'O'
         
@@ -82,3 +101,5 @@ player_2 = Player('P2', 'O')
 print(game_on.move('top-L', 'P1'))
 
 print(game.board)
+
+
