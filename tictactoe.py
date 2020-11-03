@@ -34,18 +34,19 @@ class Player:
 
 class Game:
     def __init__(self):
-        self.board = {'top-L': ' ',
-                        'top-M': ' ',
-                        'top-R': ' ',
-                        'mid-L': ' ',
-                        'mid-M': ' ',
-                        'mid-R': ' ',
-                        'low-L': ' ',
-                        'low-M': ' ',
-                        'low-R': ' '}
+
+        self.board = {'1': ' ',
+                        '2': ' ',
+                        '3': ' ',
+                        '4': ' ',
+                        '5': ' ',
+                        '6': ' ',
+                        '7': ' ',
+                        '8': ' ',
+                        '9': ' '}
     def __repr__(self):
         # pretty print board
-        return f"{self.board['top-L']}|{self.board['top-M']}|{self.board['top-R']}\n-+-+-\n{self.board['mid-L']}|{self.board['mid-M']}|{self.board['mid-R']}\n-+-+-\n{self.board['low-L']}|{self.board['low-M']}|{self.board['low-R']}\n"
+        return f"{self.board['1']}|{self.board['2']}|{self.board['3']}\n-+-+-\n{self.board['4']}|{self.board['5']}|{self.board['6']}\n-+-+-\n{self.board['7']}|{self.board['8']}|{self.board['9']}\n"
         
     def move(self, turn, player):
         # place tokens over the board
@@ -59,37 +60,32 @@ class Game:
         players = [p1, p2]
         for player in players:
         # horizontal_win_conditions = iterate 3 rows
-            if player.token == self.board['top-L'] == self.board['top-M'] == self.board['top-R']:
+
+            if player.token == self.board['1'] == self.board['2'] == self.board['3']:
                 vic = player
-            if player.token == self.board['mid-L'] == self.board['mid-M'] == self.board['mid-R']:
+            if player.token == self.board['4'] == self.board['5'] == self.board['6']:
                 vic = player
-            if player.token == self.board['low-L'] == self.board['low-M'] == self.board['low-R']:
+            if player.token == self.board['7'] == self.board['8'] == self.board['9']:
                 vic = player
         # vertical win condition = iterate 3 columns
-            if player.token == self.board['top-L'] == self.board['mid-L'] == self.board['low-L']:
+            if player.token == self.board['1'] == self.board['4'] == self.board['7']:
                 vic = player
-            if player.token == self.board['top-M'] == self.board['mid-M'] == self.board['low-M']:
+            if player.token == self.board['2'] == self.board['5'] == self.board['8']:
                 vic = player
-            if player.token == self.board['top-R'] == self.board['mid-R'] == self.board['low-R']:
+            if player.token == self.board['3'] == self.board['6'] == self.board['9']:
                 vic = player
         # l-diagonal
-            if player.token == self.board['top-L'] == self.board['mid-M'] == self.board['low-R']:
+            if player.token == self.board['1'] == self.board['5'] == self.board['9']:
                 vic = player
         # r-diagonal
-            if player.token == self.board['top-R'] == self.board['mid-M'] == self.board['low-L']:
+            if player.token == self.board['3'] == self.board['5'] == self.board['7']:
                 vic = player
         return vic
 
     def is_full(self):
         # check if draw condition met
-        empty = 0
-        for i in self.board: 
-            if self.board[i] == ' ':
-                empty += 1
-        if empty == 0:
-            return True
-        else:
-            return False
+        fullORnah = all(value == "X" or value == "0"  for value in self.board.values()) # Checks if all the values in dictionary are "X" or "O". Returns True or False
+        return fullORnah
 
     def is_game_over(self, p1, p2):
         # check if either calc_wnner OR is_full are True
@@ -104,12 +100,12 @@ class Game:
 
 def main():
     game_on = Game()
-    print("\tMoves are top-L, top-M, top-R,\n \
-         \tmid-L, mid-M, mid-R, \n\
-         \tlow-L, low-M, low-R.")
+    print("\tTic Tac Toe")
+    print("\tValid moves are, from top-left going across:")
+    print("\t1, 2, 3; 4, 5, 6; 7, 8, 9")
     print(repr(game_on))
-    player1 = input("P1 will be 'X'. Enter name: ")
-    player2 = input("P2 will be 'O'. Enter name: ")
+    player1 = input("Enter name for P1 (X): ")
+    player2 = input("Enter name for P2 (O): ")
     p1 = Player(player1, 'X')
     p2 = Player(player2, 'O')
     plist = [p1, p2]
@@ -147,18 +143,6 @@ def main():
 
 
 main()
-
-
-
-
-
-
-
-
-
-
-#print(game_on.move('top-L', 'P1'))
-
 
 
 
