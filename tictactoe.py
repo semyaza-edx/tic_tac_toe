@@ -91,15 +91,9 @@ class Game:
         return vic
 
     def is_full(self):
-        # check if draw condition met
-        empty = 0
-        for i in self.board: 
-            if self.board[i] == ' ':
-                empty += 1
-        if empty == 0:
-            return True
-        else:
-            return False
+        
+        fullORnah = all(value == "X" or value == "0"  for value in self.board.values()): # Checks if all the values in dictionary are "X" or "O". Returns True or False
+        return fullORnah
 
     def is_game_over(self, p1, p2):
         # check if either calc_wnner OR is_full are True
