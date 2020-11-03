@@ -54,7 +54,7 @@ class Game:
                         '9': ' '}
     def __repr__(self):
         # pretty print board
-        return f"{self.board['1']}|{self.board['2']}|{self.board['3']}\n-+-+-\n{self.board['4']}|{self.board['5']}|{self.board['6']}\n-+-+-\n{self.board['7']}|{self.board['8']}|{self.board['9']}"
+        return f"{self.board['1']}|{self.board['2']}|{self.board['3']}\n-+-+-\n{self.board['4']}|{self.board['5']}|{self.board['6']}\n-+-+-\n{self.board['7']}|{self.board['8']}|{self.board['9']}\n"
         
     def move(self, turn, player):
         # place tokens over the board
@@ -114,12 +114,14 @@ class Game:
 
 def main():
     game_on = Game()
-    print("hello, world!")
-    print("Leon's portion of the game.")
-    print("Moves are top-L, mid-L, low-L, etc.")
+    print("\tTic Tac Toe")
+    print("\tValid moves are, from top-left going across:")
+    print("\t1, 2, 3; 4, 5, 6; 7, 8, 9")
     print(repr(game_on))
-    p1 = Player('p1', 'X')
-    p2 = Player('p2', 'O')
+    player1 = input("Enter name for P1 (X): ")
+    player2 = input("Enter name for P2 (O): ")
+    p1 = Player(player1, 'X')
+    p2 = Player(player2, 'O')
     plist = [p1, p2]
 
     endgame  = False
@@ -129,6 +131,7 @@ def main():
             while True:
                 try:
                     turn = input(f"Enter a square to take, {player.name}: ")
+                    print("\n")
                     if ((turn in game_on.board) & (game_on.board[turn] == ' ')):
                         game_on.move(turn, player)
                         break
