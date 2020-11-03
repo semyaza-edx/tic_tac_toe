@@ -11,7 +11,7 @@
 # PDX Fullstack: Tic Tac Toe 
 # You will write a **Player** class and **Game** class to model Tic Tac Toe, and a function **main** that models gameplay taking in user inputs through REPL.
 
-import pprint
+#import pprint
 
 # The Player class has the following properties: 
 #* **name** = *player name*
@@ -24,12 +24,9 @@ import pprint
 
 # Peter Entries Starts:
 class Player:
-    def __init__(self, type): # self = Players, type = X or O
-        self.type = type
-
-    def __str__(self):
-        return "Player {}".format(self.type)
-
+    def __init__(self, name, token): 
+        self.name = name
+        self.token = token
 
 # Peter Entries Ends:
 
@@ -44,10 +41,7 @@ class Player:
 # * 'is_game_over()' returns True if game board is full or a player has won
 
 class Game:
-
-# class Game:
-
-    def __init__(self, board):
+    def __init__(self):
         self.board = {'top-L': ' ',
                         'top-M': ' ',
                         'top-R': ' ',
@@ -57,49 +51,119 @@ class Game:
                         'low-L': ' ',
                         'low-M': ' ',
                         'low-R': ' '}
-    def __repr__():
+    def __repr__(self):
         # pretty print board
-
-        print(str(self.board['top-L']) + '|' + str(self.board['top-M']) + '|' + str(self.board['top-R']))
-        print('-+-+-')
-        print(str(self.board['mid-L']) + '|' + str(self.board['mid-M']) + '|' + str(self.board['mid-R']))
-        print('-+-+-')
-        print(str(self.board['low-L']) + '|' + str(self.board['low-M']) + '|' + str(self.board['low-R']))
-    def move(turn, player):
-        print(self.board)
-    def move(x, y, player):
-        # player's token overwrites data for space in board
-        # board(x, y) = player #either 'X' or 'O'
+        return f"{self.board['top-L']}|{self.board['top-M']}|{self.board['top-R']}\n-+-+-\n{self.board['mid-L']}|{self.board['mid-M']}|{self.board['mid-R']}\n-+-+-\n{self.board['low-L']}|{self.board['low-M']}|{self.board['low-R']}"
         
-    def calc_winner():
-        # check if winning condition met
-        # horizontal_win_conditions = iterate 3 rows
-        # vertical win condition = iterate 3 columns
-        # l-diagonal
-        # r-diagonal
-    def is_full():
-        # check if draw condition met
-    def is_game_over():
-        # check if either calc_wnner OR is_full are True
+    def move(self, turn, player):
+        # place tokens over the board
+        if turn in self.board:
+            self.board[turn] = player.token
+            
 
-def main:
-    board = Game()
+    def calc_winner(self, p1, p2):
+        # check if winning condition met
+        vic = '' # fill with either p1 or p2
+        players = [p1, p2]
+        for player in players:
+        # horizontal_win_conditions = iterate 3 rows
+            if player.token == self.board['top-L'] == self.board['top-M'] == self.board['top-R']:
+                vic = player
+            if player.token == self.board['mid-L'] == self.board['mid-M'] == self.board['mid-R']:
+                vic = player
+            if player.token == self.board['low-L'] == self.board['low-M'] == self.board['low-R']:
+                vic = player
+        # vertical win condition = iterate 3 columns
+            if player.token == self.board['top-L'] == self.board['mid-L'] == self.board['low-L']:
+                vic = player
+            if player.token == self.board['top-M'] == self.board['mid-M'] == self.board['low-M']:
+                vic = player
+            if player.token == self.board['top-R'] == self.board['mid-R'] == self.board['low-R']:
+                vic = player
+        # l-diagonal
+            if player.token == self.board['top-L'] == self.board['mid-M'] == self.board['low-R']:
+                vic = player
+        # r-diagonal
+            if player.token == self.board['top-R'] == self.board['mid-M'] == self.board['low-L']:
+                vic = player
+        return vic
+
+    def is_full(self):
+        # check if draw condition met
+        empty = 0
+        for i in self.board: 
+            if self.board[i] == ' ':
+                empty += 1
+        if empty == 0:
+            return True
+        else:
+            return False
+
+    def is_game_over(self, p1, p2):
+        # check if either calc_wnner OR is_full are True
+        vic = self.calc_winner(p1, p2)
+        draw = self.is_full()
+        if draw == True:
+            return True
+        elif vic != '':
+            return True
+        else:
+            return False
+
+def main():
+    game_on = Game()
+    print("hello, world!")
+    print("Leon's portion of the game.")
+    print("Moves are top-L, mid-L, low-L, etc.")
+    print(repr(game_on))
+    p1 = Player('p1', 'X')
+    p2 = Player('p2', 'O')
+    plist = [p1, p2]
+
+    endgame  = False
+
+    while not endgame: 
+        for player in plist:
+            while True:
+                try:
+                    turn = input(f"Enter a square to take, {player.name}: ")
+                    if ((turn in game_on.board) & (game_on.board[turn] == ' ')):
+                        game_on.move(turn, player)
+                        break
+                    else: 
+                        print("Try again.")
+                except KeyError:
+                    print("Try again.")
+                    
+            print(repr(game_on))
+
+            vic = game_on.calc_winner(p1, p2)
+
+            end = game_on.is_game_over(p1, p2)
+
+            if end == True:
+                endgame = True
+                break
+    if vic == '':
+        print("Draw")
+    else:
+        print(f"{vic.name} wins.")
+
+
 
 main()
 
-print("hello, world!")
-print("Leon's portion of the game.")
-
-game_on = Game()
 
 
-print(game.board)
 
-player_1 = Player('P1', 'X')
-player_2 = Player('P2', 'O')
 
-print(game_on.move('top-L', 'P1'))
 
-print(game.board)
+
+
+
+
+#print(game_on.move('top-L', 'P1'))
+
+
 
 
