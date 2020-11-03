@@ -84,7 +84,7 @@ class Game:
 
     def is_full(self):
         # check if draw condition met
-        fullORnah = all(value == "X" or value == "0"  for value in self.board.values()) # Checks if all the values in dictionary are "X" or "O". Returns True or False
+        fullORnah = all(value == "X" or value == "O"  for value in self.board.values()) # Checks if all the values in dictionary are "X" or "O". Returns True or False
         return fullORnah
 
     def is_game_over(self, p1, p2):
@@ -101,15 +101,14 @@ class Game:
 def main():
     game_on = Game()
     print("\tTic Tac Toe")
-    print("\tValid moves are, from top-left going across:")
-    print("\t1, 2, 3; 4, 5, 6; 7, 8, 9")
     print(repr(game_on))
     player1 = input("Enter name for P1 (X): ")
     player2 = input("Enter name for P2 (O): ")
     p1 = Player(player1, 'X')
     p2 = Player(player2, 'O')
     plist = [p1, p2]
-
+    print("\tValid moves are, from top-left going across:")
+    print("\t1, 2, 3; 4, 5, 6; 7, 8, 9")
     endgame  = False
     # add a loop layer to make replayable...
     while not endgame: 
@@ -139,7 +138,6 @@ def main():
         print("Draw")
     else:
         print(f"{vic.name} wins.")
-
 
 
 main()
