@@ -42,6 +42,7 @@ class Player:
 
 class Game:
     def __init__(self):
+
         self.board = {'1': ' ',
                         '2': ' ',
                         '3': ' ',
@@ -67,6 +68,7 @@ class Game:
         players = [p1, p2]
         for player in players:
         # horizontal_win_conditions = iterate 3 rows
+
             if player.token == self.board['1'] == self.board['2'] == self.board['3']:
                 vic = player
             if player.token == self.board['4'] == self.board['5'] == self.board['6']:
@@ -90,11 +92,17 @@ class Game:
 
     def is_full(self):
         # check if draw condition met
-        fullORnah = all(value == "X" or value == "0"  for value in self.board.values())
-        return fullORnah
+        empty = 0
+        for i in self.board: 
+            if self.board[i] == ' ':
+                empty += 1
+        if empty == 0:
+            return True
+        else:
+            return False
 
     def is_game_over(self, p1, p2):
-        # check if either calc_winner OR is_full are True
+        # check if either calc_wnner OR is_full are True
         vic = self.calc_winner(p1, p2)
         draw = self.is_full()
         if draw == True:
@@ -106,16 +114,12 @@ class Game:
 
 def main():
     game_on = Game()
-    print("Do you want to play a game!")
-    p1 = input("Player One! Please enter your name: ")
-    p2 = input("Player Two! Please enter your name: ")
-    p1 = Player(p1 , 'X')
-    p2 = Player(p2, 'O')
-    print(f"{p1.name} you are {p1.token}")
-    print(f"{p2.name} you are {p2.token}")
-    print("Moves are 1, 4, 7, etc.")
+    print("hello, world!")
+    print("Leon's portion of the game.")
+    print("Moves are top-L, mid-L, low-L, etc.")
     print(repr(game_on))
-    
+    p1 = Player('p1', 'X')
+    p2 = Player('p2', 'O')
     plist = [p1, p2]
 
     endgame  = False
@@ -150,3 +154,6 @@ def main():
 
 
 main()
+
+
+
