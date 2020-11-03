@@ -4,24 +4,16 @@
 # Author: Leon || Cleon || Peter, Students
 # Assignment: Tic-Tac-Toe - Version 1
 # Date: 10/28/2020
-# Version 1.0
+# Version 36.0.47b
 
 
 
 # PDX Fullstack: Tic Tac Toe 
 # You will write a **Player** class and **Game** class to model Tic Tac Toe, and a function **main** that models gameplay taking in user inputs through REPL.
 
-#import pprint
-
 # The Player class has the following properties: 
 #* **name** = *player name*
 #* **token** = *'X' or 'O'*
-
-
-# class Player: Peter with take this part.
-
-
-
 # Peter Entries Starts:
 class Player:
     def __init__(self, name, token): 
@@ -53,7 +45,7 @@ class Game:
                         'low-R': ' '}
     def __repr__(self):
         # pretty print board
-        return f"{self.board['top-L']}|{self.board['top-M']}|{self.board['top-R']}\n-+-+-\n{self.board['mid-L']}|{self.board['mid-M']}|{self.board['mid-R']}\n-+-+-\n{self.board['low-L']}|{self.board['low-M']}|{self.board['low-R']}"
+        return f"{self.board['top-L']}|{self.board['top-M']}|{self.board['top-R']}\n-+-+-\n{self.board['mid-L']}|{self.board['mid-M']}|{self.board['mid-R']}\n-+-+-\n{self.board['low-L']}|{self.board['low-M']}|{self.board['low-R']}\n"
         
     def move(self, turn, player):
         # place tokens over the board
@@ -112,21 +104,24 @@ class Game:
 
 def main():
     game_on = Game()
-    print("hello, world!")
-    print("Leon's portion of the game.")
-    print("Moves are top-L, mid-L, low-L, etc.")
+    print("\tMoves are top-L, top-M, top-R,\n \
+         \tmid-L, mid-M, mid-R, \n\
+         \tlow-L, low-M, low-R.")
     print(repr(game_on))
-    p1 = Player('p1', 'X')
-    p2 = Player('p2', 'O')
+    player1 = input("P1 will be 'X'. Enter name: ")
+    player2 = input("P2 will be 'O'. Enter name: ")
+    p1 = Player(player1, 'X')
+    p2 = Player(player2, 'O')
     plist = [p1, p2]
 
     endgame  = False
-
+    # add a loop layer to make replayable...
     while not endgame: 
         for player in plist:
             while True:
                 try:
                     turn = input(f"Enter a square to take, {player.name}: ")
+                    print("\n")
                     if ((turn in game_on.board) & (game_on.board[turn] == ' ')):
                         game_on.move(turn, player)
                         break
@@ -134,7 +129,7 @@ def main():
                         print("Try again.")
                 except KeyError:
                     print("Try again.")
-                    
+
             print(repr(game_on))
 
             vic = game_on.calc_winner(p1, p2)
